@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, Image, StyleProp, ViewStyle } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleProp,
+  ViewStyle,
+  TextStyle
+} from "react-native";
 import style from "./style";
 
 interface CreditCardViewFrontProps {
@@ -12,22 +19,31 @@ interface CreditCardViewFrontProps {
 interface CreditCardInfoContainerProps {
   cardHolderName: string;
   expiryDate: string;
+  textStyle?: StyleProp<TextStyle>;
   style?: StyleProp<ViewStyle>;
 }
 
 export function CardInformationContainer(props: CreditCardInfoContainerProps) {
-  const { cardHolderName, expiryDate, style: externalStyle } = props;
+  const { cardHolderName, expiryDate, textStyle, style: externalStyle } = props;
 
   return (
     <View style={[style.cardInformationContainer, externalStyle]}>
-      <Text style={[style.cardViewText, style.cardViewFrontCardNameText]}>
+      <Text
+        style={[style.cardViewText, style.cardViewFrontCardNameText, textStyle]}
+      >
         {cardHolderName}
       </Text>
       <View style={style.cardViewFrontExpiration}>
-        <Text style={[style.cardViewText, style.cardViewFrontExpiryLabel]}>
+        <Text
+          style={[
+            style.cardViewText,
+            style.cardViewFrontExpiryLabel,
+            textStyle
+          ]}
+        >
           MM/YY
         </Text>
-        <Text style={style.cardViewText}>{expiryDate}</Text>
+        <Text style={[style.cardViewText, textStyle]}>{expiryDate}</Text>
       </View>
     </View>
   );

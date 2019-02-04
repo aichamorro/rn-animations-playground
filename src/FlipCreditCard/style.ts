@@ -38,7 +38,12 @@ export default StyleSheet.create({
   },
   cardInformationContainerReverse: {
     transform: [{ scaleX: -1 }],
-    opacity: 0.2
+    opacity: 0.3
+  },
+  cardInformationContainerReverseText: {
+    color: "rgb(0, 0, 0)",
+    shadowRadius: 0,
+    fontWeight: "100"
   },
   cardViewText: {
     color: "rgba(255, 255, 255, 0.8)",
@@ -89,6 +94,7 @@ export default StyleSheet.create({
     fontSize: 21,
     fontStyle: "italic",
     fontFamily: "Courier",
-    textAlign: "right"
+    textAlign: "right",
+    fontWeight: "bold"
   }
 });
