@@ -9,6 +9,30 @@ interface CreditCardViewFrontProps {
   style?: StyleProp<ViewStyle>;
 }
 
+interface CreditCardInfoContainerProps {
+  cardHolderName: string;
+  expiryDate: string;
+  style?: StyleProp<ViewStyle>;
+}
+
+export function CardInformationContainer(props: CreditCardInfoContainerProps) {
+  const { cardHolderName, expiryDate, style: externalStyle } = props;
+
+  return (
+    <View style={[style.cardInformationContainer, externalStyle]}>
+      <Text style={[style.cardViewText, style.cardViewFrontCardNameText]}>
+        {cardHolderName}
+      </Text>
+      <View style={style.cardViewFrontExpiration}>
+        <Text style={[style.cardViewText, style.cardViewFrontExpiryLabel]}>
+          MM/YY
+        </Text>
+        <Text style={style.cardViewText}>{expiryDate}</Text>
+      </View>
+    </View>
+  );
+}
+
 export default function CreditCardViewFront(props: CreditCardViewFrontProps) {
   const { cardHolderName, number, expiryDate, style: externalStyle } = props;
 
@@ -18,18 +42,13 @@ export default function CreditCardViewFront(props: CreditCardViewFrontProps) {
         style={style.cardViewFrontBrandIcon}
         source={require("./assets/visa-icon.png")}
       />
-      <Text style={[style.cardViewText, style.cardViewFrontCardNameText]}>
-        {cardHolderName}
-      </Text>
+      <CardInformationContainer
+        cardHolderName={cardHolderName}
+        expiryDate={expiryDate}
+      />
       <Text style={[style.cardViewText, style.cardViewFrontNumberText]}>
         {number}
       </Text>
-      <View style={style.cardViewFrontExpiration}>
-        <Text style={[style.cardViewText, style.cardViewFrontExpiryLabel]}>
-          MM/YY
-        </Text>
-        <Text style={style.cardViewText}>{expiryDate}</Text>
-      </View>
     </View>
   );
 }

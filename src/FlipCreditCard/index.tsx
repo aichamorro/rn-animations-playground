@@ -1,5 +1,11 @@
 import React from "react";
-import { TouchableWithoutFeedback, View, Animated } from "react-native";
+import {
+  TouchableWithoutFeedback,
+  View,
+  Animated,
+  StyleProp,
+  ViewStyle
+} from "react-native";
 import style from "./style";
 import CreditCardViewFront from "./CardViewFront";
 import CreditCardViewBack from "./CardViewBack";
@@ -9,7 +15,10 @@ enum Face {
   front
 }
 
-interface FlipCreditCardProps {}
+interface FlipCreditCardProps {
+  style?: StyleProp<ViewStyle>;
+  scale?: number;
+}
 interface FlipCreditCardState {
   visibleFace: Face;
 }
@@ -61,6 +70,7 @@ export default class FlipCreditCard extends React.PureComponent<
   };
 
   render() {
+    const { scale = 0.8 } = this.props;
     const { visibleFace } = this.state;
     const rotation = this.rotation.interpolate({
       inputRange: [0, 1],
@@ -70,7 +80,10 @@ export default class FlipCreditCard extends React.PureComponent<
     return (
       <TouchableWithoutFeedback onPress={this.flipSides}>
         <Animated.View
-          style={[style.container, { transform: [{ rotateY: rotation }] }]}
+          style={[
+            style.container,
+            { transform: [{ rotateY: rotation }, { scale }] }
+          ]}
         >
           {visibleFace === Face.front && (
             <CreditCardViewFront
@@ -81,7 +94,12 @@ export default class FlipCreditCard extends React.PureComponent<
             />
           )}
           {visibleFace === Face.back && (
-            <CreditCardViewBack style={[style.cardFace]} cvc={cvc} />
+            <CreditCardViewBack
+              style={[style.cardFace]}
+              cvc={cvc}
+              expiryDate={expiryDate}
+              cardHolderName={creditCardName}
+            />
           )}
         </Animated.View>
       </TouchableWithoutFeedback>

@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
 
-const CardSize = { width: 300, height: 190 };
+const CardSize = { width: 400, height: 253.33 };
 const CardBackgroundColor = "rgb(104, 51, 210)";
 
 export default StyleSheet.create({
@@ -16,67 +16,70 @@ export default StyleSheet.create({
   },
   cardView: {
     ...CardSize,
-    borderRadius: 10,
+    borderRadius: 15,
     backgroundColor: CardBackgroundColor,
-    marginBottom: 20,
+    marginBottom: 27,
     position: "relative"
-    // transform: [{ scale: 0.75 }]
   },
   cardViewFrontBrandIcon: {
     position: "absolute",
-    width: 60,
-    height: 40,
+    width: 80,
+    height: 53,
     resizeMode: "contain",
-    right: 17,
-    top: 17
+    right: 23,
+    top: 23
+  },
+  cardInformationContainer: {
+    position: "absolute",
+    bottom: 3,
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 23
   },
   cardViewText: {
     color: "rgba(255, 255, 255, 0.8)",
     fontWeight: "bold",
     fontFamily: Platform.select({ ios: "Courier", android: "monospace" }),
-    fontSize: 17,
+    fontSize: 23,
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 2,
     shadowOpacity: 1,
     shadowColor: "black"
   },
   cardViewFrontCardNameText: {
-    top: 150,
-    left: 17
+    flex: 1
   },
   cardViewFrontNumberText: {
     position: "absolute",
-    top: 85,
-    left: 17,
-    fontSize: 23
+    top: 113,
+    left: 23,
+    fontSize: 30
   },
   cardViewFrontExpiration: {
-    position: "absolute",
-    top: 140,
-    right: 30,
-    fontSize: 21
+    position: "relative",
+    fontSize: 28
   },
   cardViewFrontExpiryLabel: {
-    fontSize: 12,
+    fontSize: 16,
     opacity: 0.7,
-    marginBottom: 4
+    marginBottom: 5
   },
   cardViewBackStripe: {
-    top: 35,
-    height: 36,
+    top: 47,
+    height: 48,
     width: "100%",
     backgroundColor: "black"
   },
   cardViewBackCVCContainer: {
     position: "absolute",
-    top: 85,
+    top: 113,
     alignItems: "flex-end",
     justifyContent: "center",
-    paddingRight: 12,
-    marginLeft: 12,
+    paddingRight: 16,
+    marginLeft: 16,
     backgroundColor: "white",
     width: "70%",
-    height: 22
+    height: 29
   },
   cardViewBackCVCText: {
     fontFamily: "Courier",

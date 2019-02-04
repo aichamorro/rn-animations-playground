@@ -1,14 +1,17 @@
 import React from "react";
 import { View, Text, StyleProp, ViewStyle } from "react-native";
 import style from "./style";
+import { CardInformationContainer } from "./CardViewFront";
 
 interface CreditCardViewBackProps {
   cvc: string;
+  cardHolderName: string;
+  expiryDate: string;
   style?: StyleProp<ViewStyle>;
 }
 
 export default function CreditCardViewBack(props: CreditCardViewBackProps) {
-  const { cvc, style: externalStyle } = props;
+  const { cvc, cardHolderName, expiryDate, style: externalStyle } = props;
 
   return (
     <View style={[style.cardView, externalStyle]}>
@@ -16,6 +19,11 @@ export default function CreditCardViewBack(props: CreditCardViewBackProps) {
       <View style={style.cardViewBackCVCContainer}>
         <Text style={style.cardViewBackCVCText}>{cvc}</Text>
       </View>
+      <CardInformationContainer
+        style={{ transform: [{ scaleX: -1 }], opacity: 0.2 }}
+        cardHolderName={cardHolderName}
+        expiryDate={expiryDate}
+      />
     </View>
   );
 }
