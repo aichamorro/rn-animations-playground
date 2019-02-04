@@ -26,12 +26,6 @@ export default class FlipCreditCard extends React.PureComponent<
   state = { visibleFace: Face.front };
   rotation = new Animated.Value(0);
 
-  visibilityStyle(visibleFace: Face, view: Face): any {
-    if (visibleFace !== view) {
-      return { display: "none" };
-    }
-  }
-
   nextSide: (face: Face) => Face = face => {
     switch (face) {
       case Face.front:
@@ -78,22 +72,17 @@ export default class FlipCreditCard extends React.PureComponent<
         <Animated.View
           style={[style.container, { transform: [{ rotateY: rotation }] }]}
         >
-          <CreditCardViewFront
-            style={[
-              style.cardFace,
-              this.visibilityStyle(visibleFace, Face.front)
-            ]}
-            cardHolderName={creditCardName}
-            number={creditCardNumber}
-            expiryDate={expiryDate}
-          />
-          <CreditCardViewBack
-            style={[
-              style.cardFace,
-              this.visibilityStyle(visibleFace, Face.back)
-            ]}
-            cvc={cvc}
-          />
+          {visibleFace === Face.front && (
+            <CreditCardViewFront
+              style={[style.cardFace]}
+              cardHolderName={creditCardName}
+              number={creditCardNumber}
+              expiryDate={expiryDate}
+            />
+          )}
+          {visibleFace === Face.back && (
+            <CreditCardViewBack style={[style.cardFace]} cvc={cvc} />
+          )}
         </Animated.View>
       </TouchableWithoutFeedback>
     );
