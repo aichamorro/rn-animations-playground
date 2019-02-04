@@ -27,6 +27,8 @@ const creditCardNumber = "4242 4242 4242 4242";
 const expiryDate = "07/20";
 const cvc = "629";
 
+const animationDuration = 200;
+
 export default class FlipCreditCard extends React.PureComponent<
   FlipCreditCardProps,
   FlipCreditCardState
@@ -46,6 +48,7 @@ export default class FlipCreditCard extends React.PureComponent<
   startFlipping = () => {
     Animated.timing(this.rotation, {
       toValue: 1,
+      duration: animationDuration / 2,
       useNativeDriver: true
     }).start(() => {
       this.setState(
@@ -60,6 +63,7 @@ export default class FlipCreditCard extends React.PureComponent<
   endFlipping = () => {
     Animated.timing(this.rotation, {
       toValue: 0,
+      duration: animationDuration / 2,
       useNativeDriver: true
     }).start();
   };
