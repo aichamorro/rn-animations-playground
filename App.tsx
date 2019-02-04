@@ -1,9 +1,9 @@
 import React from "react";
 import LoadingList from "./src/LoadingList";
-import FlipCard from "./src/FlipCard";
+import FlipCreditCard from "./src/FlipCreditCard";
 
 export default class App extends React.Component {
   render() {
-    return <FlipCard />;
+    return <FlipCreditCard />;
   }
 }

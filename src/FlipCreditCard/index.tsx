@@ -9,8 +9,8 @@ enum Face {
   front
 }
 
-interface FlipCardProps {}
-interface FlipCardState {
+interface FlipCreditCardProps {}
+interface FlipCreditCardState {
   visibleFace: Face;
 }
 
@@ -20,9 +20,9 @@ const expiryDate = "07/20";
 const cvc = "629";
 const perpendicularAngle = 90;
 
-export default class FlipCard extends React.PureComponent<
-  FlipCardProps,
-  FlipCardState
+export default class FlipCreditCard extends React.PureComponent<
+  FlipCreditCardProps,
+  FlipCreditCardState
 > {
   state = { visibleFace: Face.front };
   rotation = new Animated.Value(0);

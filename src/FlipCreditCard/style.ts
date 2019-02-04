@@ -8,7 +8,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    position: "relative"
+    position: "relative",
+    backfaceVisibility: "visible"
   },
   cardFace: {
     position: "absolute"
@@ -33,7 +34,11 @@ export default StyleSheet.create({
     color: "rgba(255, 255, 255, 0.8)",
     fontWeight: "bold",
     fontFamily: Platform.select({ ios: "Courier", android: "monospace" }),
-    fontSize: 17
+    fontSize: 17,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 2,
+    shadowOpacity: 1,
+    shadowColor: "black"
   },
   cardViewFrontCardNameText: {
     top: 150,
@@ -68,6 +73,7 @@ export default StyleSheet.create({
     alignItems: "flex-end",
     justifyContent: "center",
     paddingRight: 12,
+    marginLeft: 12,
     backgroundColor: "white",
     width: "70%",
     height: 22
