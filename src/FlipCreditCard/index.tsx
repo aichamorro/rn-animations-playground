@@ -18,7 +18,6 @@ const creditCardName = "ALBERTO CHAMORRO";
 const creditCardNumber = "4242 4242 4242 4242";
 const expiryDate = "07/20";
 const cvc = "629";
-const perpendicularAngle = 90;
 
 export default class FlipCreditCard extends React.PureComponent<
   FlipCreditCardProps,
@@ -44,7 +43,7 @@ export default class FlipCreditCard extends React.PureComponent<
 
   startFlipping = () => {
     Animated.timing(this.rotation, {
-      toValue: perpendicularAngle,
+      toValue: 1,
       useNativeDriver: true
     }).start(() => {
       this.setState(
@@ -70,7 +69,7 @@ export default class FlipCreditCard extends React.PureComponent<
   render() {
     const { visibleFace } = this.state;
     const rotation = this.rotation.interpolate({
-      inputRange: [0, perpendicularAngle],
+      inputRange: [0, 1],
       outputRange: ["0deg", "90deg"]
     });
 
