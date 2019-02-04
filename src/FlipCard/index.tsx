@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableWithoutFeedback, View } from "react-native";
+import { TouchableWithoutFeedback, View, Animated } from "react-native";
 import style from "./style";
 import CreditCardViewFront from "./CardViewFront";
 import CreditCardViewBack from "./CardViewBack";
@@ -18,17 +18,16 @@ const creditCardName = "ALBERTO CHAMORRO";
 const creditCardNumber = "4242 4242 4242 4242";
 const expiryDate = "07/20";
 const cvc = "629";
+const perpendicularAngle = 90;
 
 export default class FlipCard extends React.PureComponent<
   FlipCardProps,
   FlipCardState
 > {
   state = { visibleFace: Face.front };
+  rotation = new Animated.Value(0);
 
-  visibilityStyle(
-    visibleFace: Face,
-    view: Face
-  ): { display: "none" } | undefined {
+  visibilityStyle(visibleFace: Face, view: Face): any {
     if (visibleFace !== view) {
       return { display: "none" };
     }
@@ -43,18 +42,43 @@ export default class FlipCard extends React.PureComponent<
     }
   };
 
+  startFlipping = () => {
+    Animated.timing(this.rotation, {
+      toValue: perpendicularAngle,
+      useNativeDriver: true
+    }).start(() => {
+      this.setState(
+        prevState => ({
+          visibleFace: this.nextSide(prevState.visibleFace)
+        }),
+        () => this.endFlipping()
+      );
+    });
+  };
+
+  endFlipping = () => {
+    Animated.timing(this.rotation, {
+      toValue: 0,
+      useNativeDriver: true
+    }).start();
+  };
+
   flipSides = () => {
-    this.setState(prevState => ({
-      visibleFace: this.nextSide(prevState.visibleFace)
-    }));
+    this.startFlipping();
   };
 
   render() {
     const { visibleFace } = this.state;
+    const rotation = this.rotation.interpolate({
+      inputRange: [0, perpendicularAngle],
+      outputRange: ["0deg", "90deg"]
+    });
 
     return (
       <TouchableWithoutFeedback onPress={this.flipSides}>
-        <View style={style.container}>
+        <Animated.View
+          style={[style.container, { transform: [{ rotateY: rotation }] }]}
+        >
           <CreditCardViewFront
             style={[
               style.cardFace,
@@ -71,7 +95,7 @@ export default class FlipCard extends React.PureComponent<
             ]}
             cvc={cvc}
           />
-        </View>
+        </Animated.View>
       </TouchableWithoutFeedback>
     );
   }

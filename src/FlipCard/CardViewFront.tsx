@@ -6,7 +6,7 @@ interface CreditCardViewFrontProps {
   cardHolderName: string;
   number: string;
   expiryDate: string;
-  style: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
 }
 
 export default function CreditCardViewFront(props: CreditCardViewFrontProps) {
