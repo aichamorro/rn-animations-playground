@@ -20,7 +20,7 @@ export default function CreditCardViewBack(props: CreditCardViewBackProps) {
         <Text style={style.cardViewBackCVCText}>{cvc}</Text>
       </View>
       <CardInformationContainer
-        style={{ transform: [{ scaleX: -1 }], opacity: 0.2 }}
+        style={style.cardInformationContainerReverse}
         cardHolderName={cardHolderName}
         expiryDate={expiryDate}
       />

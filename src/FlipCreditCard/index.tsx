@@ -70,7 +70,7 @@ export default class FlipCreditCard extends React.PureComponent<
   };
 
   render() {
-    const { scale = 0.8 } = this.props;
+    const { scale = 0.9 } = this.props;
     const { visibleFace } = this.state;
     const rotation = this.rotation.interpolate({
       inputRange: [0, 1],
@@ -87,7 +87,7 @@ export default class FlipCreditCard extends React.PureComponent<
         >
           {visibleFace === Face.front && (
             <CreditCardViewFront
-              style={[style.cardFace]}
+              style={style.cardFace}
               cardHolderName={creditCardName}
               number={creditCardNumber}
               expiryDate={expiryDate}
@@ -95,7 +95,7 @@ export default class FlipCreditCard extends React.PureComponent<
           )}
           {visibleFace === Face.back && (
             <CreditCardViewBack
-              style={[style.cardFace]}
+              style={style.cardFace}
               cvc={cvc}
               expiryDate={expiryDate}
               cardHolderName={creditCardName}

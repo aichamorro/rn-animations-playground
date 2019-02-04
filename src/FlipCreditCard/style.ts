@@ -36,6 +36,10 @@ export default StyleSheet.create({
     alignItems: "center",
     padding: 23
   },
+  cardInformationContainerReverse: {
+    transform: [{ scaleX: -1 }],
+    opacity: 0.2
+  },
   cardViewText: {
     color: "rgba(255, 255, 255, 0.8)",
     fontWeight: "bold",
@@ -82,6 +86,8 @@ export default StyleSheet.create({
     height: 29
   },
   cardViewBackCVCText: {
+    fontSize: 21,
+    fontStyle: "italic",
     fontFamily: "Courier",
     textAlign: "right"
   }
