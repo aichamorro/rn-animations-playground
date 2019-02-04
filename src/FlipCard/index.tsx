@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleProp, ViewStyle } from "react-native";
+import { TouchableWithoutFeedback, View } from "react-native";
 import style from "./style";
 import CreditCardViewFront from "./CardViewFront";
 import CreditCardViewBack from "./CardViewBack";
@@ -34,25 +34,45 @@ export default class FlipCard extends React.PureComponent<
     }
   }
 
+  nextSide: (face: Face) => Face = face => {
+    switch (face) {
+      case Face.front:
+        return Face.back;
+      case Face.back:
+        return Face.front;
+    }
+  };
+
+  flipSides = () => {
+    this.setState(prevState => ({
+      visibleFace: this.nextSide(prevState.visibleFace)
+    }));
+  };
+
   render() {
     const { visibleFace } = this.state;
 
     return (
-      <View style={style.container}>
-        <CreditCardViewFront
-          style={[
-            style.cardFace,
-            this.visibilityStyle(visibleFace, Face.front)
-          ]}
-          cardHolderName={creditCardName}
-          number={creditCardNumber}
-          expiryDate={expiryDate}
-        />
-        <CreditCardViewBack
-          style={[style.cardFace, this.visibilityStyle(visibleFace, Face.back)]}
-          cvc={cvc}
-        />
-      </View>
+      <TouchableWithoutFeedback onPress={this.flipSides}>
+        <View style={style.container}>
+          <CreditCardViewFront
+            style={[
+              style.cardFace,
+              this.visibilityStyle(visibleFace, Face.front)
+            ]}
+            cardHolderName={creditCardName}
+            number={creditCardNumber}
+            expiryDate={expiryDate}
+          />
+          <CreditCardViewBack
+            style={[
+              style.cardFace,
+              this.visibilityStyle(visibleFace, Face.back)
+            ]}
+            cvc={cvc}
+          />
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
