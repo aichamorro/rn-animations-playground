@@ -65,6 +65,7 @@ export default StyleSheet.create({
     fontSize: 30
   },
   cardViewFrontExpiration: {
+    alignItems: "center",
     position: "relative",
     fontSize: 28
   },
@@ -73,15 +74,15 @@ export default StyleSheet.create({
     opacity: 0.7,
     marginBottom: 5
   },
-  cardViewBackStripe: {
-    top: 47,
+  cardViewBackStrip: {
+    top: 37,
     height: 48,
     width: "100%",
     backgroundColor: "black"
   },
   cardViewBackCVCContainer: {
     position: "absolute",
-    top: 113,
+    top: 100,
     alignItems: "flex-end",
     justifyContent: "center",
     paddingRight: 16,

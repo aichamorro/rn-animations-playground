@@ -15,7 +15,7 @@ export default function CreditCardViewBack(props: CreditCardViewBackProps) {
 
   return (
     <View style={[style.cardView, externalStyle]}>
-      <View style={style.cardViewBackStripe} />
+      <View style={style.cardViewBackStrip} />
       <View style={style.cardViewBackCVCContainer}>
         <Text style={style.cardViewBackCVCText}>{cvc}</Text>
       </View>
