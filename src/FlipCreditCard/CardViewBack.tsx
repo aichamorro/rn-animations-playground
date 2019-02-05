@@ -1,7 +1,11 @@
 import React from "react";
 import { View, Text, StyleProp, ViewStyle } from "react-native";
-import style from "./style";
+import style, {
+  CardBackgroundColorStart,
+  CardBackgroundColorEnd
+} from "./style";
 import { CardInformationContainer } from "./CardViewFront";
+import { LinearGradient } from "expo";
 
 interface CreditCardViewBackProps {
   cvc: string;
@@ -14,7 +18,10 @@ export default function CreditCardViewBack(props: CreditCardViewBackProps) {
   const { cvc, cardHolderName, expiryDate, style: externalStyle } = props;
 
   return (
-    <View style={[style.cardView, externalStyle]}>
+    <LinearGradient
+      colors={[CardBackgroundColorStart, CardBackgroundColorEnd]}
+      style={[style.cardView, externalStyle]}
+    >
       <View style={style.cardViewBackStrip} />
       <View style={style.cardViewBackCVCContainer}>
         <Text style={style.cardViewBackCVCText}>{cvc}</Text>
@@ -25,6 +32,6 @@ export default function CreditCardViewBack(props: CreditCardViewBackProps) {
         expiryDate={expiryDate}
         textStyle={style.cardInformationContainerReverseText}
       />
-    </View>
+    </LinearGradient>
   );
 }

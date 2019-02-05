@@ -1,7 +1,8 @@
 import { StyleSheet, Platform } from "react-native";
 
 const CardSize = { width: 400, height: 253.33 };
-const CardBackgroundColor = "rgb(104, 51, 210)";
+export const CardBackgroundColorStart = "#6833d2";
+export const CardBackgroundColorEnd = "#3f1f7e";
 
 export default StyleSheet.create({
   container: {
@@ -17,9 +18,21 @@ export default StyleSheet.create({
   cardView: {
     ...CardSize,
     borderRadius: 15,
-    backgroundColor: CardBackgroundColor,
+    backgroundColor: CardBackgroundColorStart,
     marginBottom: 27,
     position: "relative"
+  },
+  cardViewFrontBackground: {
+    width: "100%",
+    height: "100%",
+    opacity: 0.1
+  },
+  cardViewFrontChip: {
+    position: "absolute",
+    width: 60,
+    height: 60,
+    top: 23,
+    left: 23
   },
   cardViewFrontBrandIcon: {
     position: "absolute",

@@ -7,7 +7,11 @@ import {
   ViewStyle,
   TextStyle
 } from "react-native";
-import style from "./style";
+import { LinearGradient } from "expo";
+import style, {
+  CardBackgroundColorEnd,
+  CardBackgroundColorStart
+} from "./style";
 
 interface CreditCardViewFrontProps {
   cardHolderName: string;
@@ -53,7 +57,18 @@ export default function CreditCardViewFront(props: CreditCardViewFrontProps) {
   const { cardHolderName, number, expiryDate, style: externalStyle } = props;
 
   return (
-    <View style={[style.cardView, externalStyle]}>
+    <LinearGradient
+      colors={[CardBackgroundColorStart, CardBackgroundColorEnd]}
+      style={[style.cardView, externalStyle]}
+    >
+      <Image
+        style={style.cardViewFrontBackground}
+        source={require("./assets/gray-world-map-md.png")}
+      />
+      <Image
+        style={style.cardViewFrontChip}
+        source={require("./assets/card-chip.png")}
+      />
       <Image
         style={style.cardViewFrontBrandIcon}
         source={require("./assets/visa-icon.png")}
@@ -65,6 +80,6 @@ export default function CreditCardViewFront(props: CreditCardViewFrontProps) {
       <Text style={[style.cardViewText, style.cardViewFrontNumberText]}>
         {number}
       </Text>
-    </View>
+    </LinearGradient>
   );
 }
