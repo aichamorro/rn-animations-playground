@@ -63,10 +63,10 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontFamily: Platform.select({ ios: "Courier", android: "monospace" }),
     fontSize: 23,
-    shadowOffset: { width: 0, height: 0 },
-    shadowRadius: 2,
-    shadowOpacity: 1,
-    shadowColor: "black"
+    shadowColor: "black",
+    textShadowColor: "black",
+    textShadowRadius: 1,
+    textShadowOffset: { width: 1, height: 1 }
   },
   cardViewFrontCardNameText: {
     flex: 1
@@ -85,7 +85,9 @@ export default StyleSheet.create({
   cardViewFrontExpiryLabel: {
     fontSize: 16,
     opacity: 0.7,
-    marginBottom: 5
+    marginBottom: 5,
+    textShadowRadius: 0,
+    textShadowOffset: { width: 0, height: 0 }
   },
   cardViewBackStrip: {
     top: 37,

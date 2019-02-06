@@ -17,15 +17,15 @@ enum Face {
 interface FlipCreditCardProps {
   style?: StyleProp<ViewStyle>;
   scale?: number;
+  creditCardName: string;
+  creditCardNumber: string;
+  expiryDate: string;
+  cvc: string;
 }
+
 interface FlipCreditCardState {
   visibleFace: Face;
 }
-
-const creditCardName = "ALBERTO CHAMORRO";
-const creditCardNumber = "4242 4242 4242 4242";
-const expiryDate = "07/20";
-const cvc = "629";
 
 const animationDuration = 200;
 
@@ -73,7 +73,14 @@ export default class FlipCreditCard extends React.PureComponent<
   };
 
   render() {
-    const { scale = 0.9 } = this.props;
+    const {
+      scale = 0.9,
+      creditCardName,
+      creditCardNumber,
+      cvc,
+      expiryDate
+    } = this.props;
+
     const { visibleFace } = this.state;
     const rotation = this.rotation.interpolate({
       inputRange: [0, 1],
