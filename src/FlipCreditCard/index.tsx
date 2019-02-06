@@ -8,7 +8,12 @@ import {
 import style from "./style";
 import CreditCardViewFront from "./CardViewFront";
 import CreditCardViewBack from "./CardViewBack";
-import { string } from "prop-types";
+import {
+  defaultCVCPlaceholder,
+  defaultExpiryPlaceholder,
+  defaultCardHolderNamePlaceholder,
+  defaultCreditCardNumberPlaceholder
+} from "./common";
 
 enum Face {
   back,
@@ -31,6 +36,7 @@ interface FlipCreditCardProps {
   scale?: number;
   creditCardName?: string;
   creditCardNumber?: string;
+  creditCardNumberLength?: number;
   expiryDate?: string;
   cvc?: string;
   placeholders?: Partial<CreditCardFields>;
@@ -42,10 +48,6 @@ interface FlipCreditCardState {
 }
 
 const animationDuration = 200;
-export const defaultCVCPlaceholder = "---";
-export const defaultExpiryPlaceholder = "--/--";
-export const defaultCardHolderNamePlaceholder = "Card holder's name";
-export const defaultCreditCardNumberPlaceholder = "---- ---- ---- ----";
 
 export default class FlipCreditCard extends React.PureComponent<
   FlipCreditCardProps,

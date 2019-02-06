@@ -34,7 +34,7 @@ export default StyleSheet.create({
     position: "absolute",
     width: 60,
     height: 60,
-    top: 23,
+    top: 33,
     left: 23
   },
   cardViewFrontBrandIcon: {
@@ -77,8 +77,11 @@ export default StyleSheet.create({
   cardViewFrontNumberText: {
     position: "absolute",
     top: 113,
-    left: 23,
-    fontSize: 30
+    left: 0,
+    fontSize: 30,
+    width: "100%",
+    textAlign: "center",
+    letterSpacing: 1.5
   },
   cardViewFrontExpiration: {
     alignItems: "center",

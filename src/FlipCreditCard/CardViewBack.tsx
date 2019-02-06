@@ -43,8 +43,8 @@ export default function CreditCardViewBack(props: CreditCardViewBackProps) {
       </View>
       <CardInformationContainer
         style={style.cardInformationContainerReverse}
-        cardHolderName={cardHolderName || placeholders.creditCardName}
-        expiryDate={expiryDate || placeholders.expiryDate}
+        cardHolderName={cardHolderName}
+        expiryDate={expiryDate}
         textStyle={style.cardInformationContainerReverseText}
         placeholders={placeholders}
         labels={labels}
