@@ -6,10 +6,9 @@ export default class App extends React.Component {
   render() {
     return (
       <FlipCreditCard
-        creditCardName="ALBERTO CHAMORRO"
-        creditCardNumber="4242 4242 4242 4242"
-        expiryDate="07/20"
-        cvc="629"
+        localizedLabels={{
+          expiryDate: "MM/YY"
+        }}
       />
     );
   }

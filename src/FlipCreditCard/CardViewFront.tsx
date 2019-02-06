@@ -12,12 +12,16 @@ import style, {
   CardBackgroundColorEnd,
   CardBackgroundColorStart
 } from "./style";
+import { CreditCardFields, CreditCardLabels } from ".";
+import { addPlaceholderStyleIfNeeded } from "./common";
 
 interface CreditCardViewFrontProps {
   cardHolderName: string;
   number: string;
   expiryDate: string;
   style?: StyleProp<ViewStyle>;
+  placeholders: CreditCardFields;
+  labels: CreditCardLabels;
 }
 
 interface CreditCardInfoContainerProps {
@@ -25,17 +29,31 @@ interface CreditCardInfoContainerProps {
   expiryDate: string;
   textStyle?: StyleProp<TextStyle>;
   style?: StyleProp<ViewStyle>;
+  placeholders: CreditCardFields;
+  labels: CreditCardLabels;
 }
 
 export function CardInformationContainer(props: CreditCardInfoContainerProps) {
-  const { cardHolderName, expiryDate, textStyle, style: externalStyle } = props;
+  const {
+    cardHolderName,
+    expiryDate,
+    textStyle,
+    style: externalStyle,
+    placeholders,
+    labels
+  } = props;
 
   return (
     <View style={[style.cardInformationContainer, externalStyle]}>
       <Text
-        style={[style.cardViewText, style.cardViewFrontCardNameText, textStyle]}
+        style={[
+          style.cardViewText,
+          style.cardViewFrontCardNameText,
+          textStyle,
+          addPlaceholderStyleIfNeeded(cardHolderName)
+        ]}
       >
-        {cardHolderName}
+        {(cardHolderName || placeholders.creditCardName).toUpperCase()}
       </Text>
       <View style={style.cardViewFrontExpiration}>
         <Text
@@ -45,16 +63,31 @@ export function CardInformationContainer(props: CreditCardInfoContainerProps) {
             textStyle
           ]}
         >
-          MM/YY
+          {labels.expiryDate}
         </Text>
-        <Text style={[style.cardViewText, textStyle]}>{expiryDate}</Text>
+        <Text
+          style={[
+            style.cardViewText,
+            textStyle,
+            addPlaceholderStyleIfNeeded(expiryDate)
+          ]}
+        >
+          {expiryDate || placeholders.expiryDate}
+        </Text>
       </View>
     </View>
   );
 }
 
 export default function CreditCardViewFront(props: CreditCardViewFrontProps) {
-  const { cardHolderName, number, expiryDate, style: externalStyle } = props;
+  const {
+    cardHolderName,
+    number,
+    expiryDate,
+    placeholders,
+    style: externalStyle,
+    labels
+  } = props;
 
   return (
     <LinearGradient
@@ -76,9 +109,17 @@ export default function CreditCardViewFront(props: CreditCardViewFrontProps) {
       <CardInformationContainer
         cardHolderName={cardHolderName}
         expiryDate={expiryDate}
+        placeholders={placeholders}
+        labels={labels}
       />
-      <Text style={[style.cardViewText, style.cardViewFrontNumberText]}>
-        {number}
+      <Text
+        style={[
+          style.cardViewText,
+          style.cardViewFrontNumberText,
+          addPlaceholderStyleIfNeeded(number)
+        ]}
+      >
+        {number || placeholders.creditCardNumber}
       </Text>
     </LinearGradient>
   );

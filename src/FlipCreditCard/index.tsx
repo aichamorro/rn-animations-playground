@@ -8,19 +8,33 @@ import {
 import style from "./style";
 import CreditCardViewFront from "./CardViewFront";
 import CreditCardViewBack from "./CardViewBack";
+import { string } from "prop-types";
 
 enum Face {
   back,
   front
 }
 
-interface FlipCreditCardProps {
-  style?: StyleProp<ViewStyle>;
-  scale?: number;
+export interface CreditCardFields {
   creditCardName: string;
   creditCardNumber: string;
   expiryDate: string;
   cvc: string;
+}
+
+export interface CreditCardLabels {
+  expiryDate: string;
+}
+
+interface FlipCreditCardProps {
+  style?: StyleProp<ViewStyle>;
+  scale?: number;
+  creditCardName?: string;
+  creditCardNumber?: string;
+  expiryDate?: string;
+  cvc?: string;
+  placeholders?: Partial<CreditCardFields>;
+  localizedLabels?: Partial<CreditCardFields>;
 }
 
 interface FlipCreditCardState {
@@ -28,6 +42,10 @@ interface FlipCreditCardState {
 }
 
 const animationDuration = 200;
+export const defaultCVCPlaceholder = "---";
+export const defaultExpiryPlaceholder = "--/--";
+export const defaultCardHolderNamePlaceholder = "Card holder's name";
+export const defaultCreditCardNumberPlaceholder = "---- ---- ---- ----";
 
 export default class FlipCreditCard extends React.PureComponent<
   FlipCreditCardProps,
@@ -78,8 +96,23 @@ export default class FlipCreditCard extends React.PureComponent<
       creditCardName,
       creditCardNumber,
       cvc,
+      placeholders: optionalPlaceholders,
+      localizedLabels: optionalLabels,
       expiryDate
     } = this.props;
+
+    const placeholders = {
+      cvc: defaultCVCPlaceholder,
+      expiryDate: defaultExpiryPlaceholder,
+      creditCardName: defaultCardHolderNamePlaceholder,
+      creditCardNumber: defaultCreditCardNumberPlaceholder,
+      ...optionalPlaceholders
+    };
+
+    const labels = {
+      expiryDate: "MM/YY",
+      ...optionalLabels
+    };
 
     const { visibleFace } = this.state;
     const rotation = this.rotation.interpolate({
@@ -101,6 +134,8 @@ export default class FlipCreditCard extends React.PureComponent<
               cardHolderName={creditCardName}
               number={creditCardNumber}
               expiryDate={expiryDate}
+              placeholders={placeholders}
+              labels={labels}
             />
           )}
           {visibleFace === Face.back && (
@@ -109,6 +144,8 @@ export default class FlipCreditCard extends React.PureComponent<
               cvc={cvc}
               expiryDate={expiryDate}
               cardHolderName={creditCardName}
+              placeholders={placeholders}
+              labels={labels}
             />
           )}
         </Animated.View>

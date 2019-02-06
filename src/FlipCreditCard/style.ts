@@ -22,6 +22,9 @@ export default StyleSheet.create({
     marginBottom: 27,
     position: "relative"
   },
+  placeholderTextStyle: {
+    opacity: 0.7
+  },
   cardViewFrontBackground: {
     width: "100%",
     height: "100%",
