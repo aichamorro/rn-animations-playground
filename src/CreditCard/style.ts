@@ -6,10 +6,8 @@ export const CardBackgroundColorEnd = "#3f1f7e";
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
+    width: "100%",
     alignItems: "center",
-    position: "relative",
     backfaceVisibility: "visible"
   },
   cardView: {

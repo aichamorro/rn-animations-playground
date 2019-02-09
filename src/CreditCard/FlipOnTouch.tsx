@@ -54,7 +54,7 @@ export default class FlipCreditCard extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { scale = 1 } = this.props;
+    const { scale = 1, style: externalStyle } = this.props;
     const { visibleFace } = this.state;
 
     const rotation = this.rotation.interpolate({
@@ -67,16 +67,10 @@ export default class FlipCreditCard extends React.PureComponent<Props, State> {
         <Animated.View
           style={[
             style.container,
-            {
-              transform: [{ rotateY: rotation }, { scale }]
-            }
+            { transform: [{ rotateY: rotation }, { scale }] }
           ]}
         >
-          <CardView
-            {...this.props}
-            style={undefined}
-            visibleFace={visibleFace}
-          />
+          <CardView {...this.props} visibleFace={visibleFace} />
         </Animated.View>
       </TouchableOpacity>
     );
