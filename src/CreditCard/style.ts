@@ -12,9 +12,6 @@ export default StyleSheet.create({
     position: "relative",
     backfaceVisibility: "visible"
   },
-  cardFace: {
-    position: "absolute"
-  },
   cardView: {
     ...CardSize,
     borderRadius: 15,

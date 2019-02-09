@@ -12,8 +12,8 @@ import style, {
   CardBackgroundColorEnd,
   CardBackgroundColorStart
 } from "./style";
-import { CreditCardFields, CreditCardLabels } from ".";
 import { addPlaceholderStyleIfNeeded } from "./common";
+import { CreditCardFields, CreditCardLabels } from "./CardView";
 
 interface CreditCardViewFrontProps {
   cardHolderName: string;

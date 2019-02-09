@@ -6,8 +6,8 @@ import style, {
 } from "./style";
 import { CardInformationContainer } from "./CardViewFront";
 import { LinearGradient } from "expo";
-import { CreditCardFields, CreditCardLabels } from ".";
 import { addPlaceholderStyleIfNeeded } from "./common";
+import { CreditCardFields, CreditCardLabels } from "./CardView";
 
 interface CreditCardViewBackProps {
   cvc: string;
