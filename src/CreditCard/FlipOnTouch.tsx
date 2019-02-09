@@ -68,11 +68,15 @@ export default class FlipCreditCard extends React.PureComponent<Props, State> {
           style={[
             style.container,
             {
-              transform: [{ rotateY: rotation }]
+              transform: [{ rotateY: rotation }, { scale }]
             }
           ]}
         >
-          <CardView {...this.props} visibleFace={visibleFace} />
+          <CardView
+            {...this.props}
+            style={undefined}
+            visibleFace={visibleFace}
+          />
         </Animated.View>
       </TouchableOpacity>
     );
