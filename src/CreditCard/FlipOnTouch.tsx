@@ -54,7 +54,7 @@ export default class FlipCreditCard extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { scale = 1, style: externalStyle } = this.props;
+    const { scale = 1 } = this.props;
     const { visibleFace } = this.state;
 
     const rotation = this.rotation.interpolate({

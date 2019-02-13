@@ -1,6 +1,6 @@
 import React from "react";
 import LoadingList from "./src/LoadingList";
-import CardView from "./src/CreditCard/FlipOnTouch";
+import CardView from "./src/CreditCard/FlipOnGesture";
 import { SafeAreaView, View } from "react-native";
 
 export default class App extends React.Component {
